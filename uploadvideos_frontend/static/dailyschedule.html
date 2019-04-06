@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Daily Schedule</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+<!--===============================================================================================-->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+ <!--===============================================================================================-->
+    <script src="js/filesModelDirective.js"></script>
+    <script src="js/ngDragEventDirectives.js"></script>
+<!--===============================================================================================-->
+    <script src="js/app.js"></script>
+    <script src="js/video.rest.js"></script>
+</head>
+<body>
+
+<div id="motherdiv" ng-app="UploadVideosFrontEndApp" ng-controller="MainController">
+
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+
+                <div class="wrapper">
+                    <div class="inline">
+                        <button class="btn btn-primary" ng-click="redirectToWeeklySchedule()">
+                            <i class="fa fa-calendar-check-o" aria-hidden="true"> Weekly Schedule</i>
+                        </button>
+                    </div>
+
+                    <div class="inline">
+                        <button class="btn btn-primary" ng-click="redirectToMonthlySchedule()">
+                            <i class="fa fa-calendar-check-o" aria-hidden="true"> Monthly Schedule</i>
+                        </button>
+                    </div>
+
+                    <div id="trashcan" class="right" droppable drop="deleteVideo">
+                        <button class="btn btn-danger">
+                            <i class="fa fa-trash" aria-hidden="true">
+                            </i>
+                        </button>
+                    </div>
+                    <!--
+                    <div id="trashcan" class="right" droppable drop="deleteVideo">
+                        <img class="rs" src="Images/trashcan.png"/>
+                    </div>
+                    -->
+
+                    <div class="right">
+                        <button class="btn btn-primary" ng-click="redirectToDailySchedule()">
+                            <i class="fa fa-film" aria-hidden="true">
+                                Daily Schedule
+                            </i>
+                        </button>
+                    </div>
+
+                    <div class="right">
+                        <button class="btn btn-success" ng-click="redirectToHome()">
+                            <i class="fa fa-home" aria-hidden="true"> Home</i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <br/><br/>
+
+                <div class="outset">
+                    <div class="square" ng-repeat="video in videos track by video.id">
+                        <!--
+                        <button class="btn btn-danger" ng-click="deleteVideo(video)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button> -->
+
+                        <video class="rs" muted="muted" id="{{ video.id }}" draggable item="item" controls>
+                            <source ng-src="{{ video.videofile }}" type="video/mp4">
+                        </video>
+                    </div>
+
+                </div>
+
+
+                <br/><br/>
+
+				<div class="table100 ver1 m-b-110" >
+					<table data-vertable="ver2" class="table" id="dailyTable">
+						<thead>
+							<tr class="row100 head">
+								<th></th>
+								<th>8h-9h</th>
+								<th>9h-10h</th>
+                                <th>10h-11h</th>
+                                <th>11h-12h</th>
+                                <th>12h-13h</th>
+                                <th>13h-14h</th>
+                                <th>14h-15h</th>
+                                <th>15h-16h</th>
+                                <th>16h-17h</th>
+								<th>17h-18h</th>
+                                <th>18h-19h</th>
+                                <th>19h-20h</th>
+                                <th>20h-21h</th>
+                                <th>21h-22h</th>
+                                <th>22h-23h</th>
+								<th>23h-00h</th>
+                                <th>00h-01h</th>
+                                <th>1h-2h</th>
+                                <th>2h-3h</th>
+                                <th>3h-4h</th>
+                                <th>4h-5h</th>
+                                <th>5h-6h</th>
+								<th>6h-7h</th>
+                                <th>7h-8h</th>
+
+							</tr>
+						</thead>
+						<tbody>
+                            <tr id="mondayId" class="row100">
+								<td class="column100 column1" data-column="column1" >Monday</td>
+                                <td id ="1_8" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_9" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_10" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_11" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_12" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_13" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_14" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_15" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_16" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_17" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_18" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_19" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_20" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_21" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_22" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_23" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_0" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_1" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_2" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_3" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_4" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_5" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_6" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="1_7" droppable drop="handleDrop" bin="bin"></td>
+                            </tr>
+
+                            <tr id="tuesdayId" class="row100">
+								<td class="column100 column1" data-column="column1" >Tuesday</td>
+                                <td id ="2_8" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_9" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_10" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_11" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_12" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_13" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_14" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_15" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_16" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_17" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_18" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_19" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_20" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_21" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_22" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_23" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_0" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_1" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_2" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_3" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_4" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_5" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_6" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="2_7" droppable drop="handleDrop" bin="bin"></td>
+                            </tr>
+
+                            <tr id="wednesdayId" class="row100">
+								<td class="column100 column1" data-column="column1" >Wednesday</td>
+                                <td id ="3_8" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_9" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_10" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_11" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_12" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_13" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_14" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_15" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_16" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_17" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_18" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_19" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_20" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_21" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_22" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_23" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_0" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_1" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_2" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_3" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_4" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_5" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_6" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="3_7" droppable drop="handleDrop" bin="bin"></td>
+                            </tr>
+
+                             <tr id="thursdayId" class="row100">
+								<td class="column100 column1" data-column="column1" >Thursday</td>
+                                <td id ="4_8" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_9" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_10" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_11" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_12" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_13" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_14" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_15" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_16" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_17" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_18" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_19" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_20" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_21" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_22" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_23" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_0" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_1" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_2" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_3" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_4" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_5" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_6" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="4_7" droppable drop="handleDrop" bin="bin"></td>
+                            </tr>
+
+                            <tr id="fridayId" class="row100">
+								<td class="column100 column1" data-column="column1" >Friday</td>
+                                <td id ="5_8" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_9" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_10" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_11" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_12" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_13" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_14" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_15" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_16" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_17" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_18" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_19" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_20" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_21" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_22" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_23" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_0" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_1" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_2" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_3" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_4" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_5" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_6" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="5_7" droppable drop="handleDrop" bin="bin"></td>
+                            </tr>
+
+                            <tr id="saturdayId" class="row100">
+								<td class="column100 column1" data-column="column1" >Saturday</td>
+                                <td id ="6_8" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_9" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_10" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_11" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_12" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_13" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_14" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_15" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_16" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_17" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_18" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_19" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_20" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_21" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_22" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_23" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_0" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_1" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_2" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_3" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_4" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_5" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_6" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="6_7" droppable drop="handleDrop" bin="bin"></td>
+                            </tr>
+
+                            <tr id="sundayId" class="row100">
+								<td class="column100 column1" data-column="column1" >Sunday</td>
+                                <td id ="0_8" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_9" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_10" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_11" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_12" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_13" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_14" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_15" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_16" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_17" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_18" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_19" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_20" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_21" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_22" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_23" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_0" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_1" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_2" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_3" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_4" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_5" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_6" droppable drop="handleDrop" bin="bin"></td>
+                                <td id ="0_7" droppable drop="handleDrop" bin="bin"></td>
+                            </tr>
+
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!--===============================================================================================-->
+	<script src="js/popper.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<!--===============================================================================================-->
+	<script src="js/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+<!--===============================================================================================-->
+
+</body>
+</html>

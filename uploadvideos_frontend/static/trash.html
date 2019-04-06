@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Daily Schedule</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/trashcss.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+<!--===============================================================================================-->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+ <!--===============================================================================================-->
+    <script src="js/filesModelDirective.js"></script>
+    <script src="js/ngDragEventDirectives.js"></script>
+<!--===============================================================================================-->
+    <script src="js/app.js"></script>
+    <!--<script src="js/dcane.js"></script>-->
+    <script src="js/video.rest.js"></script>
+</head>
+
+
+<body ng-app="UploadVideosFrontEndApp" ng-controller="MainController">
+
+
+        <!--<div class="bin" droppable drop="handleDrop" ng-repeat="bin in [1, 2, 3]" bin="bin" id="bin{{ bin }}"></div>-->
+
+        <div ng-if="bl"><div class="bin" droppable drop="handleDrop" bin="bin" id="d">lol</div></div>
+        <div class="bin" droppable drop="handleDrop" bin="bin" id="1"></div>
+        <div class="bin" droppable drop="handleDrop" bin="bin" id="2"></div>
+        <div class="bin" droppable drop="handleDrop" bin="bin" id="3"></div>
+
+
+    <div class="item" id="{{ video.id +8000 }}" ng-repeat="video in videos track by video.id" draggable item="item">
+        <video id="{{ video.id }}" muted="muted" class="rs" controls>
+            <source ng-src="{{ video.videofile }}" type="video/mp4">
+        </video>
+        <form method="POST" ng-submit="updateVideo(video)">
+
+            <input id="video" type="file" files-model="video.videofile">
+            <label for="video2"></label><input id="video2" type="text" ng-model="video.videoduration">
+            <label for="video3"></label><input id="video3" type="text" ng-model="video.positionsdb">
+            <button class="btn btn-primary" type="submit">update</button>
+        </form>
+    </div>
+
+
+    <!--===============================================================================================-->
+	<script src="js/popper.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<!--===============================================================================================-->
+	<script src="js/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+<!--===============================================================================================-->
+</body>
+
+<script>
+    var video = document.getElementById("");
+</script>
+</html>

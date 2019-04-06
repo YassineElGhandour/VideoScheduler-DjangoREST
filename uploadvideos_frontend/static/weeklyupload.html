@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Weekly Schedule</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+<!--===============================================================================================-->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+ <!--===============================================================================================-->
+    <script src="js/filesModelDirective.js"></script>
+    <script src="js/ngDragEventDirectives.js"></script>
+<!--===============================================================================================-->
+    <script src="js/app.js"></script>
+    <script src="js/weeklyapp.js"></script>
+    <script src="js/video.rest.js"></script>
+</head>
+<body>
+
+<div id="motherdiv" ng-app="UploadVideosFrontEndApp" ng-controller="MainController">
+
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+
+                <div class="red" align="center">
+                    The weekly schedule is not complete, and does not match the updates made in the daily schedule
+                </div>
+
+                <div class="wrapper">
+                    <div class="inline">
+                        <button class="btn btn-primary" ng-click="redirectToDailySchedule()">
+                            <i class="fa fa-calendar-check-o" aria-hidden="true"> Daily Schedule</i>
+                        </button>
+                    </div>
+
+                    <div class="inline">
+                        <button class="btn btn-primary" ng-click="redirectToMonthlySchedule()">
+                            <i class="fa fa-calendar-check-o" aria-hidden="true"> Monthly Schedule</i>
+                        </button>
+                    </div>
+
+                    <div class="right">
+                        <button class="btn btn-primary" ng-click="redirectToWeeklySchedule()">
+                            <i class="fa fa-film" aria-hidden="true">
+                                Weekly Schedule
+                            </i>
+                        </button>
+                    </div>
+
+                    <div class="right">
+                        <button class="btn btn-success" ng-click="redirectToHome()">
+                            <i class="fa fa-home" aria-hidden="true"> Home</i>
+                        </button>
+                    </div>
+                </div>
+
+				<div class="outset">
+                    <div id="{{ video.id+8000 }}" ng-repeat="video in videos track by video.id" class="square" draggable="true" ondragstart="dragWeekly(event)" ondragover="allowDropWeekly(event)"  >
+                        <!--
+                        <button class="btn btn-danger" ng-click="deleteVideo(video)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                        -->
+
+          			    <video id="{{ video.id }}" muted="muted" class="rs" controls>
+                            <source ng-src="{{ video.videofile }}" type="video/mp4">
+                        </video>
+      			    </div>
+                </div>
+
+
+      			<br/><br/>
+				<div class="table100 ver1 m-b-110" >
+					<table data-vertable="ver2" class="table table-bordered">
+						<thead>
+							<tr class="row100 head">
+								<th class="column100 column1" data-column="column1"></th>
+								<th class="column100 column2" data-column="column2">Monday</th>
+								<th class="column100 column3" data-column="column3">Tuesday</th>
+								<th class="column100 column4" data-column="column4">Wednesday</th>
+								<th class="column100 column5" data-column="column5">Thursday</th>
+                                <th class="column100 column5" data-column="column5">Friday</th>
+                                <th class="column100 column5" data-column="column5">Saturday</th>
+                                <th class="column100 column5" data-column="column5">Sunday</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 1</td>
+								<td class="column100 column2" data-column="column2" id ="1_1" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="1_2" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="1_3" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="1_4" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column6" data-column="column6" id ="1_5" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column7" data-column="column7" id ="1_6" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column8" data-column="column8" id ="1_7" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 2</td>
+								<td class="column100 column2" data-column="column2" id ="2_1" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="2_2" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="2_3" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="2_4" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column6" data-column="column6" id ="2_5" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column7" data-column="column7" id ="2_6" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column8" data-column="column8" id ="2_7" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 3</td>
+								<td class="column100 column2" data-column="column2" id ="3_8" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="3_10" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="3_12" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="3_14" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column6" data-column="column6" id ="3_16" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column7" data-column="column7" id ="3_18" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+								<td class="column100 column8" data-column="column8" id ="3_20" draggable="true" ondrop="dropWeekly(event)" ondragover="allowDropWeekly(event)"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 4</td>
+								<td class="column100 column2" data-column="column2"></td>
+								<td class="column100 column3" data-column="column3"></td>
+								<td class="column100 column4" data-column="column4"></td>
+								<td class="column100 column5" data-column="column5"></td>
+								<td class="column100 column6" data-column="column6"></td>
+								<td class="column100 column7" data-column="column7"></td>
+								<td class="column100 column8" data-column="column8"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 5</td>
+								<td class="column100 column2" data-column="column2"></td>
+								<td class="column100 column3" data-column="column3"></td>
+								<td class="column100 column4" data-column="column4"></td>
+								<td class="column100 column5" data-column="column5"></td>
+								<td class="column100 column6" data-column="column6"></td>
+								<td class="column100 column7" data-column="column7"></td>
+								<td class="column100 column8" data-column="column8"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 6</td>
+								<td class="column100 column2" data-column="column2"></td>
+								<td class="column100 column3" data-column="column3"></td>
+								<td class="column100 column4" data-column="column4"></td>
+								<td class="column100 column5" data-column="column5"></td>
+								<td class="column100 column6" data-column="column6"></td>
+								<td class="column100 column7" data-column="column7"></td>
+								<td class="column100 column8" data-column="column8"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 7</td>
+								<td class="column100 column2" data-column="column2"></td>
+								<td class="column100 column3" data-column="column3"></td>
+								<td class="column100 column4" data-column="column4"></td>
+								<td class="column100 column5" data-column="column5"></td>
+								<td class="column100 column6" data-column="column6"></td>
+								<td class="column100 column7" data-column="column7"></td>
+								<td class="column100 column8" data-column="column8"></td>
+							</tr>
+
+                            <tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 8</td>
+								<td class="column100 column2" data-column="column2"></td>
+								<td class="column100 column3" data-column="column3"></td>
+								<td class="column100 column4" data-column="column4"></td>
+								<td class="column100 column5" data-column="column5"></td>
+								<td class="column100 column6" data-column="column6"></td>
+								<td class="column100 column7" data-column="column7"></td>
+								<td class="column100 column8" data-column="column8"></td>
+							</tr>
+
+                            <tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 9</td>
+								<td class="column100 column2" data-column="column2"></td>
+								<td class="column100 column3" data-column="column3"></td>
+								<td class="column100 column4" data-column="column4"></td>
+								<td class="column100 column5" data-column="column5"></td>
+								<td class="column100 column6" data-column="column6"></td>
+								<td class="column100 column7" data-column="column7"></td>
+								<td class="column100 column8" data-column="column8"></td>
+							</tr>
+
+                            <tr class="row100">
+								<td class="column100 column1" data-column="column1">Week 10</td>
+								<td class="column100 column2" data-column="column2"></td>
+								<td class="column100 column3" data-column="column3"></td>
+								<td class="column100 column4" data-column="column4"></td>
+								<td class="column100 column5" data-column="column5"></td>
+								<td class="column100 column6" data-column="column6"></td>
+								<td class="column100 column7" data-column="column7"></td>
+								<td class="column100 column8" data-column="column8"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!--===============================================================================================-->
+	<script src="js/popper.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<!--===============================================================================================-->
+	<script src="js/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+<!--===============================================================================================-->
+
+</body>
+</html>

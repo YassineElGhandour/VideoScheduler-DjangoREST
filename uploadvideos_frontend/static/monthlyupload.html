@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Monthly Schedule</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+<!--===============================================================================================-->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+ <!--===============================================================================================-->
+    <script src="js/filesModelDirective.js"></script>
+    <script src="js/ngDragEventDirectives.js"></script>
+<!--===============================================================================================-->
+    <script src="js/app.js"></script>
+    <script src="js/monthlyapp.js"></script>
+    <script src="js/video.rest.js"></script>
+</head>
+<body>
+
+<div id="motherdiv" ng-app="UploadVideosFrontEndApp" ng-controller="MainController">
+
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+
+                <div class="red" align="center">
+                    The monthly schedule is not complete, and does not match the updates made in the daily schedule
+                </div>
+
+                <div class="wrapper">
+                    <div class="inline">
+                        <button class="btn btn-primary" ng-click="redirectToWeeklySchedule()">
+                            <i class="fa fa-calendar-check-o" aria-hidden="true"> Weekly Schedule</i>
+                        </button>
+                    </div>
+
+                    <div class="inline">
+                        <button class="btn btn-primary" ng-click="redirectToDailySchedule()">
+                            <i class="fa fa-calendar-check-o" aria-hidden="true"> Daily Schedule</i>
+                        </button>
+                    </div>
+
+                    <div class="right">
+                        <button class="btn btn-primary" ng-click="redirectToMonthlySchedule()">
+                            <i class="fa fa-film" aria-hidden="true">
+                                Monthly Schedule
+                            </i>
+                        </button>
+                    </div>
+
+                    <div class="right">
+                        <button class="btn btn-success" ng-click="redirectToHome()">
+                            <i class="fa fa-home" aria-hidden="true"> Home</i>
+                        </button>
+                    </div>
+                </div>
+
+				<div class="outset">
+                    <div id="{{ video.id+8000 }}" ng-repeat="video in videos track by video.id" class="square" draggable="true" ondragstart="dragMonthly(event)" ondragover="allowDropMonthly(event)">
+                        <!--
+                        <button class="btn btn-danger" ng-click="deleteVideo(video)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                          -->
+          			    <video id="{{ video.id }}" muted="muted" class="rs" controls>
+                            <source ng-src="{{ video.videofile }}" type="video/mp4">
+                        </video>
+      			    </div>
+                </div>
+
+
+
+				<div class="table100 ver1 m-b-110" >
+					<table data-vertable="ver2" class="table table-bordered">
+						<thead>
+							<tr class="row100 head">
+								<th class="column100 column1" data-column="column1"></th>
+								<th class="column100 column2" data-column="column2">Week 1</th>
+								<th class="column100 column3" data-column="column3">Week 2</th>
+								<th class="column100 column4" data-column="column4">Week 3</th>
+								<th class="column100 column5" data-column="column5">Week 4</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">January</td>
+								<td class="column100 column2" data-column="column2" id ="1_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="1_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="1_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="1_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">February</td>
+								<td class="column100 column2" data-column="column2" id ="2_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="2_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="3_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="4_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">March</td>
+								<td class="column100 column2" data-column="column2" id ="3_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="3_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="3_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="3_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">April</td>
+								<td class="column100 column2" data-column="column2" id ="4_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="4_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="4_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="4_4" draggable="true" ondrop="dragMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">May</td>
+								<td class="column100 column2" data-column="column2" id ="5_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="5_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="5_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="5_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">June</td>
+								<td class="column100 column2" data-column="column2" id ="6_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="6_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="6_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="6_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">July</td>
+								<td class="column100 column2" data-column="column2" id ="7_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="7_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="7_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="7_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+                            <tr class="row100">
+								<td class="column100 column1" data-column="column1">August</td>
+								<td class="column100 column2" data-column="column2" id ="8_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="8_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="8_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="8_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+                            <tr class="row100">
+								<td class="column100 column1" data-column="column1">September</td>
+								<td class="column100 column2" data-column="column2" id ="9_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="9_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="9_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="9_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+                            <tr class="row100">
+								<td class="column100 column1" data-column="column1">October</td>
+								<td class="column100 column2" data-column="column2" id ="10_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="10_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="10_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="10_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+                            <tr class="row100">
+								<td class="column100 column1" data-column="column1">November</td>
+								<td class="column100 column2" data-column="column2" id ="11_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="11_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="11_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="11_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+							</tr>
+
+                             <tr class="row100">
+								<td class="column100 column1" data-column="column1">December</td>
+								<td class="column100 column2" data-column="column2" id ="12_1" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column3" data-column="column3" id ="12_2" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column4" data-column="column4" id ="12_3" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+								<td class="column100 column5" data-column="column5" id ="12_4" draggable="true" ondrop="dropMonthly(event)" ondragover="allowDropMonthly(event)"></td>
+                             </tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!--===============================================================================================-->
+	<script src="js/popper.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<!--===============================================================================================-->
+	<script src="js/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+<!--===============================================================================================-->
+
+</body>
+</html>

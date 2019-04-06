@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X_UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Include AngularJS -->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+    <script src="js/filesModelDirective.js"></script>
+    <script src="js/ngDragEventDirectives.js"></script>
+     <script src="node_modules/jquery/dist/jquery.js"></script>
+    <!-- Include Our Custom JS-->
+    <script src="js/app.js"></script>
+    <script src="js/video.rest.js"></script>
+    <title>Video Scheduler</title>
+</head>
+
+<body>
+    <div id="motherdiv" ng-app="UploadVideosFrontEndApp" ng-controller="MainController">
+
+        <div id="bottom">
+            <p>Upload your videos here: <br/>
+            <form class="form" name="form" ng-submit="uploadVideo()" enctype='multipart/form-data'>
+                <input id="video" type="file" files-model="newVideo.videofile">
+
+                <button class="btn btn-primary" type="submit">upload</button>
+            </form>
+        </div>
+
+        <a href="monthlyupload.html">
+            <div class="square">
+                <div class="content">
+                    <div class="table">
+                        <div class="table-cell">
+                          Monthly Schedule
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+         <a href="weeklyupload.html">
+            <div class="square">
+                <div class="content">
+                    <div class="table">
+                        <div class="table-cell">
+                          Weekly Schedule
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+         <a href="dailyschedule.html">
+            <div class="square">
+                <div class="content">
+                    <div class="table">
+                        <div class="table-cell">
+                          Daily Schedule
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </a>
+
+    </div>
+
+</body>
+<script>
+
+    var uploadField = document.getElementById("video");
+
+    uploadField.onchange = function() {
+
+        if(this.files[0].size > 1342177280){
+
+            alert("The video's size is too big, make sure you upload a video with less than 1.25 GB");
+            this.value ="";
+        }
+        if(this.files[0].type !== 'video/mp4'){
+
+            alert("The uploaded video is not a .mp4 file, make sure you upload the right one ");
+            this.value ="";
+        }
+
+    };
+</script>
+</html>
